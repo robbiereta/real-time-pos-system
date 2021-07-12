@@ -87,6 +87,12 @@ class Pos extends Component {
           this.setState({ items: items });
         }
       }
+      var totalCost = 0;
+    for (var i = 0; i < items.length; i++) {
+      var price = items[i].price * items[i].quantity;
+      totalCost = parseInt(totalCost, 10) + parseInt(price, 10);
+    }
+    this.setState({ total: totalCost });
     }
   };
   handleCheckOut = () => {
@@ -160,7 +166,7 @@ class Pos extends Component {
 
     var renderLivePos = () => {
       if (items.length === 0) {
-        return <p> No products added</p>;
+        return <p> No se han agregado productos</p>;
       } else {
         return items.map(
           item => <LivePos {...item} onChange={this.handleChange} />,
@@ -269,7 +275,7 @@ class Pos extends Component {
                       onClick={() => this.setState({ addItemModal: true })}
                       className="btn btn-default btn-sm"
                     >
-                      <i className="glyphicon glyphicon-plus" /> Add Item
+                      <i className="glyphicon glyphicon-plus" /> Añade un producto
                     </button>
                   </span>
                   <Modal show={this.state.addItemModal} onHide={this.close}>
@@ -329,11 +335,10 @@ class Pos extends Component {
                 </td>
               </tr>
               <tr className="titles">
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Tax</th>
-                <th>Total</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Iva</th>
                 <th />
               </tr>
             </thead>
