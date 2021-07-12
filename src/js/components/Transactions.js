@@ -3,7 +3,6 @@ import "./App.css";
 import Header from "./Header";
 import CompleteTransactions from "./CompleteTransactions";
 import axios from "axios";
-import moment from "moment";
 
 const HOST = "http://localhost:80";
 const url = HOST + `/api/all`;

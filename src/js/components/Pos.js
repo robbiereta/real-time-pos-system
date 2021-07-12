@@ -43,7 +43,7 @@ class Pos extends Component {
     this.setState({ addItemModal: false });
 
     const currentItem = {
-      id: this.state.id++,
+      id: this.setState.id++,
       name: this.state.name,
       price: this.state.price,
       quantity: this.state.quantity
@@ -88,7 +88,7 @@ class Pos extends Component {
         }
       }
       var totalCost = 0;
-    for (var i = 0; i < items.length; i++) {
+    for ( i = 0; i < items.length; i++) {
       var price = items[i].price * items[i].quantity;
       totalCost = parseInt(totalCost, 10) + parseInt(price, 10);
     }
@@ -116,7 +116,7 @@ class Pos extends Component {
     });
   };
   render() {
-    var { quantity, modal, items } = this.state;
+    var {  items } = this.state;
 
     var renderAmountDue = () => {
       return (
@@ -166,7 +166,7 @@ class Pos extends Component {
 
     var renderLivePos = () => {
       if (items.length === 0) {
-        return <p> No se han agregado productos</p>;
+        return "No se han agregado productos";
       } else {
         return items.map(
           item => <LivePos {...item} onChange={this.handleChange} />,
@@ -204,7 +204,7 @@ class Pos extends Component {
                 u<br />
                 t
               </button>
-              <div classNameName="modal-body">
+              <div className="modal-body">
                 <Modal show={this.state.checkOutModal}>
                   <Modal.Header closeButton>
                     <Modal.Title>Checkout</Modal.Title>
@@ -269,7 +269,7 @@ class Pos extends Component {
           <table className="pos table table-responsive table-striped table-hover">
             <thead>
               <tr>
-                <td colspan="6" className="text-center">
+                <td colSpan="6" className="text-center">
                   <span className="pull-left">
                     <button
                       onClick={() => this.setState({ addItemModal: true })}

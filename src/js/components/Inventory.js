@@ -47,11 +47,7 @@ class Inventory extends Component {
           this.setState({ snackMessage: "Product Added Successfully!" }),
         this.handleSnackbar()
       )
-      .catch(err => {
-        console.log(err),
-          this.setState({ snackMessage: "Product failed to save" }),
-          this.handleSnackbar();
-      });
+      
   };
   handleEditProduct = editProduct => {
     axios
@@ -61,12 +57,7 @@ class Inventory extends Component {
         this.handleSnackbar();
         return true;
       })
-      .catch(err => {
-        console.log(err);
-        this.setState({ snackMessage: "Product Update Failed!" }),
-          this.handleSnackbar();
-        return false;
-      });
+      
   };
 
   handleName = e => {
