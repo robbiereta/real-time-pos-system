@@ -7,7 +7,7 @@ import moment from "moment";
 import { Modal, Button } from "react-bootstrap";
 import LivePos from "./LivePos";
 
-const HOST = "http://localhost:80";
+const HOST = "http://test-env.eba-m9pp3pwh.us-east-2.elasticbeanstalk.com";
 let socket = io.connect(HOST);
 
 class Pos extends Component {

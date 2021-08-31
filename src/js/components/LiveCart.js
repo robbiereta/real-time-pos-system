@@ -7,7 +7,7 @@ import RecentTransactions from "./RecentTransactions";
 import LiveTransactions from "./LiveTransactions";
 import moment from "moment";
 
-const HOST = "http://localhost:80";
+const HOST = "http://test-env.eba-m9pp3pwh.us-east-2.elasticbeanstalk.com";
 var url = HOST + `/api/all`;
 var socket = io.connect(HOST);
 class LiveCart extends Component {
@@ -19,12 +19,12 @@ class LiveCart extends Component {
     // console.dir(socket);
     axios
       .get(url)
-      .then(response => this.setState({ transactions: response.data }))
-      .catch(err => {
+      .then((response) => this.setState({ transactions: response.data }))
+      .catch((err) => {
         console.log(err);
       });
 
-    socket.on("update-live-cart-display", liveCart => {
+    socket.on("update-live-cart-display", (liveCart) => {
       this.setState({ liveTransactions: liveCart });
     });
   }
@@ -38,7 +38,7 @@ class LiveCart extends Component {
       if (transactions.length === 0) {
         return <p>No recent transactions available</p>;
       } else {
-        return transactions.map(transaction => (
+        return transactions.map((transaction) => (
           <RecentTransactions {...transaction} />
         ));
       }
@@ -60,7 +60,7 @@ class LiveCart extends Component {
           </div>
         );
       } else {
-        return liveTransactions.map(liveTransaction => (
+        return liveTransactions.map((liveTransaction) => (
           <LiveTransactions {...liveTransaction} />
         ));
       }
@@ -98,7 +98,8 @@ class LiveCart extends Component {
                   <span>Today's Sales</span>
                   <br />
                   <span className="text-success checkout-total-price">
-                    $0<span />
+                    $0
+                    <span />
                   </span>
                 </div>
 

@@ -5,7 +5,7 @@ import Product from "./Product";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 
-const HOST = "http://localhost:80";
+const HOST = "http://test-env.eba-m9pp3pwh.us-east-2.elasticbeanstalk.com";
 
 class Inventory extends Component {
   constructor(props) {
@@ -25,13 +25,13 @@ class Inventory extends Component {
     this.handleQuantity = this.handleQuantity.bind(this);
     this.handleSnackbar = this.handleSnackbar.bind(this);
   }
-  componentWillMount() {
+  componentDidMount() {
     var url = HOST + `/api/inventory/products`;
-    axios.get(url).then(response => {
+    axios.get(url).then((response) => {
       this.setState({ products: response.data });
     });
   }
-  handleNewProduct = e => {
+  handleNewProduct = (e) => {
     e.preventDefault();
     this.setState({ productFormModal: false });
     var newProduct = {
@@ -43,36 +43,32 @@ class Inventory extends Component {
     axios
       .post(HOST + `/api/inventory/product`, newProduct)
       .then(
-        response =>
+        (response) =>
           this.setState({ snackMessage: "Product Added Successfully!" }),
         this.handleSnackbar()
-      )
-      
+      );
   };
-  handleEditProduct = editProduct => {
-    axios
-      .put(HOST + `/api/inventory/product`, editProduct)
-      .then(response => {
-        this.setState({ snackMessage: "Product Updated Successfully!" });
-        this.handleSnackbar();
-        return true;
-      })
-      
+  handleEditProduct = (editProduct) => {
+    axios.put(HOST + `/api/inventory/product`, editProduct).then((response) => {
+      this.setState({ snackMessage: "Product Updated Successfully!" });
+      this.handleSnackbar();
+      return true;
+    });
   };
 
-  handleName = e => {
+  handleName = (e) => {
     this.setState({ name: e.target.value });
   };
-  handlePrice = e => {
+  handlePrice = (e) => {
     this.setState({ price: e.target.value });
   };
-  handleQuantity = e => {
+  handleQuantity = (e) => {
     this.setState({ quantity: e.target.value });
   };
   handleSnackbar = () => {
     var bar = document.getElementById("snackbar");
     bar.className = "show";
-    setTimeout(function() {
+    setTimeout(function () {
       bar.className = bar.className.replace("show", "");
     }, 3000);
   };
@@ -84,7 +80,7 @@ class Inventory extends Component {
       if (products.length === 0) {
         return <p>{products}</p>;
       } else {
-        return products.map(product => (
+        return products.map((product) => (
           <Product {...product} onEditProduct={this.handleEditProduct} />
         ));
       }

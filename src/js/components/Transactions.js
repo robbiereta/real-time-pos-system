@@ -4,7 +4,7 @@ import Header from "./Header";
 import CompleteTransactions from "./CompleteTransactions";
 import axios from "axios";
 
-const HOST = "http://localhost:80";
+const HOST = "http://test-env.eba-m9pp3pwh.us-east-2.elasticbeanstalk.com";
 const url = HOST + `/api/all`;
 
 class Transactions extends Component {
@@ -15,8 +15,8 @@ class Transactions extends Component {
   componentWillMount() {
     axios
       .get(url)
-      .then(response => this.setState({ transactions: response.data }))
-      .catch(err => {
+      .then((response) => this.setState({ transactions: response.data }))
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -27,7 +27,7 @@ class Transactions extends Component {
       if (transactions.length === 0) {
         return <p>No Transactions found</p>;
       } else {
-        return transactions.map(transaction => (
+        return transactions.map((transaction) => (
           <CompleteTransactions {...transaction} />
         ));
       }
